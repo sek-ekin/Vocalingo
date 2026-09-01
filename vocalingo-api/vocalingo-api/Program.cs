@@ -1,3 +1,5 @@
+using vocalingo_api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var allowedOrigins = builder.Configuration
@@ -9,7 +11,11 @@ var allowedOrigins = builder.Configuration
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddHttpClient<TranslationService>(client =>
+{
+    client.BaseAddress =
+        new Uri("https://api.mymemory.translated.net/");
+});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
