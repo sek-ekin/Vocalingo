@@ -16,6 +16,7 @@ builder.Services.AddHttpClient<TranslationService>(client =>
     client.BaseAddress =
         new Uri("https://api.mymemory.translated.net/");
 });
+builder.Services.AddScoped<WordService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
